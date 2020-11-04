@@ -53,7 +53,7 @@
                     <to>
                         <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
 <!--                        <image>106.55.159.119/harbor/${project.name}</image>-->
-                        <image>${project.name}</image>
+                        <image>${project.name}11</image>
                         <tags>
                             <tag>latest</tag>
 <!--                            <tag>1.0.0-SNAPSHOT</tag>-->
@@ -65,15 +65,27 @@
                     </to>
                     <!--容器相关的属性-->
                     <container>
+                        <!--todo 没有执行权限-->
+                        <!--启用容器的命令(类似于Docker的entrypoint 设置后jvmFlags 和 mainClass将被忽略 )-->
+<!--                        <entrypoint>-->
+<!--                            <shell>/bin/sh</shell>-->
+<!--                            <option>-c</option>-->
+<!--                            <arg>/entrypoint.sh</arg>-->
+<!--                        </entrypoint>-->
+
                         <!--jvm内存参数-->
                         <jvmFlags>
                             <jvmFlag>-Xms4g</jvmFlag>
                             <jvmFlag>-Xmx4g</jvmFlag>
                         </jvmFlags>
+
                         <!--要暴露的端口-->
                         <ports>
                             <port>8080</port>
                         </ports>
+                        <environment>
+                            <SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
+                        </environment>
                         <useCurrentTimestamp>true</useCurrentTimestamp>
                     </container>
                 </configuration>
