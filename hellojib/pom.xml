@@ -47,11 +47,21 @@
                     <!--from节点用来设置镜像的基础镜像，相当于Docerkfile中的FROM关键字-->
                     <from>
                         <!--使用openjdk官方镜像，tag是8-jdk-stretch，表示镜像的操作系统是debian9,装好了jdk8-->
-                        <image>openjdk:8-jdk-stretch</image>
+<!--                        <image>openjdk:8-jdk-stretch</image>-->
+                        <image>openjdk:16-slim-buster</image>
                     </from>
                     <to>
                         <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
-                        <image>bolingcavalry/hellojib:${project.version}</image>
+<!--                        <image>106.55.159.119/harbor/${project.name}</image>-->
+                        <image>${project.name}</image>
+                        <tags>
+                            <tag>latest</tag>
+<!--                            <tag>1.0.0-SNAPSHOT</tag>-->
+                        </tags>
+                        <auth>
+                            <username>maven</username>
+                            <password>Maven123456</password>
+                        </auth>
                     </to>
                     <!--容器相关的属性-->
                     <container>
@@ -64,6 +74,7 @@
                         <ports>
                             <port>8080</port>
                         </ports>
+                        <useCurrentTimestamp>true</useCurrentTimestamp>
                     </container>
                 </configuration>
             </plugin>
